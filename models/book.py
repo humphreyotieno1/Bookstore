@@ -1,4 +1,5 @@
 import sqlite3
+
 class Book:
     def __init__(self, title, year, cost, author_id, course_id):
         self.title = title
@@ -10,7 +11,7 @@ class Book:
     def create(self):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO books (title, year, cost, author_id, course_id) VALUES (?, ?, ?, ?, ?, ?)", (self.title, self.year, self.isbn, self.cost, self.author_id, self.course_id))
+        cursor.execute("INSERT INTO books (title, year, cost, author_id, course_id) VALUES (?, ?, ?, ?, ?)", (self.title, self.year, self.cost, self.author_id, self.course_id))
         conn.commit()
         conn.close()
 
