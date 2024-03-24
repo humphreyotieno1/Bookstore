@@ -35,7 +35,11 @@ class Book:
     def find_by_id(book_id):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM books WHERE id = ?", (book_id,))
-        book = cursor.fetchone()
+        cursor.execute("SELECT id, title, year, cost, author_id, course_id FROM books WHERE id = ?", (book_id,))
+        book_data = cursor.fetchone()
         conn.close()
-        return book
+        
+        if book_data:
+            return Book(*book_data)
+        else:
+            return None

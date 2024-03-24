@@ -16,7 +16,7 @@ def instances():
     course2 = Course("American Literature")
     course1.create()
     course2.create()
-
+    
     book1 = Book("The Great Gatsby", 1925, 20, 1, 1)
     book2 = Book("To Kill a Mockingbird", 1960, 25, 2, 1)
     book1.create()

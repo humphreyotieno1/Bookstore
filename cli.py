@@ -1,3 +1,5 @@
+from models.course import Course
+from models.author import Author
 from models.book import Book
 
 def main():
@@ -18,14 +20,27 @@ def main():
             print("Invalid choice. Please enter a valid choice.")
 
 def add_book():
-    from models.author import Author
-    from models.course import Course
-    
     title = input("Enter the title of the book: ")
     year = int(input("Enter the year of publication: "))
     cost = float(input("Enter the cost of the book: "))
-    author_id = int(input("Enter the author ID of the book: "))
+    first_name = input("Enter the author's first name: ")
+    last_name = input("Enter the author's last name: ")
     course_id = int(input("Enter the course ID of the book: "))
+    course_name = input("Enter the course name: ")
+    author_id = input("Enter the author ID of the book: ")
+        
+    existing_author = Author.find_by_id(author_id)
+    if existing_author:
+        author_id = existing_author[0]
+    else:
+        new_author = Author(first_name, last_name)
+        new_author.create()
+        author_id = new_author.find_by_id(first_name, last_name)[0]
+
+    existing_course = Course.find_by_id(course_id)
+    if not existing_course:
+        new_course = Course(course_name)
+        new_course.create()
 
     new_book = Book(title, year, cost, author_id, course_id)
     new_book.create()
@@ -35,17 +50,24 @@ def delete_book():
     book_id = input("Enter the ID of the book you want to delete: ")
     book = Book.find_by_id(book_id)
     if book:
+        author_id = book.author_id
         book.delete()
-        print("Book deleted successfully.")
+        author = Author.find_by_id(author_id)
+        if author:
+            author.delete()
+            print("Book and associated author deleted successfully.")
+        else:
+            print("Author not found.")
     else:
         print("Book not found. Please enter a valid book ID.")
+
 
 def display_all_books():
     books = Book.get_all()
     if books:
         print("All Books:")
         for book in books:
-            print(f"Title: {book[1]}, Year: {book[2]}, Cost: {book[3]}, Author ID: {book[4]}, Course ID: {book[5]}")
+            print(book)
     else:
         print("No books found.")
 
