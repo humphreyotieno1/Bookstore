@@ -1,5 +1,3 @@
-from models.course import Course
-from models.author import Author
 from models.book import Book
 
 def main():
@@ -20,26 +18,23 @@ def main():
             print("Invalid choice. Please enter a valid choice.")
 
 def add_book():
+    from models.author import Author
+    from models.course import Course
+    
     title = input("Enter the title of the book: ")
     year = int(input("Enter the year of publication: "))
     cost = float(input("Enter the cost of the book: "))
     author_id = int(input("Enter the author ID of the book: "))
     course_id = int(input("Enter the course ID of the book: "))
 
-    # Create a new Book object with the provided details
     new_book = Book(title, year, cost, author_id, course_id)
-
-    # Call the create method to insert the new book into the database
     new_book.create()
-
     print("Book added successfully.")
 
 def delete_book():
     book_id = input("Enter the ID of the book you want to delete: ")
-    # Check if the book with the given ID exists
     book = Book.find_by_id(book_id)
     if book:
-        # Delete the book from the database
         book.delete()
         print("Book deleted successfully.")
     else:
@@ -50,7 +45,7 @@ def display_all_books():
     if books:
         print("All Books:")
         for book in books:
-            print(book)
+            print(f"Title: {book[1]}, Year: {book[2]}, Cost: {book[3]}, Author ID: {book[4]}, Course ID: {book[5]}")
     else:
         print("No books found.")
 
