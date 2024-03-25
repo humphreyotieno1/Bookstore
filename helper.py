@@ -2,6 +2,21 @@ from models.course import Course
 from models.author import Author
 from models.book import Book
 
+def validate_author(author_id):
+    author = Author.find_by_id(author_id)
+    if not author:
+        print("Author not found.")
+        return None
+    return author
+
+def validate_course(course_id, course_name):
+    course = Course.find_by_id(course_id)
+    if not course:
+        new_course = Course(course_name)
+        new_course.create()
+        return new_course
+    return course
+
 def add_book():
     title = input("Enter the title of the book: ")
     year = int(input("Enter the year of publication: "))
@@ -62,6 +77,30 @@ def display_all_books():
             print(book)
     else:
         print("No books found.")
+        
+def find_author_by_id(author_id):
+    author = Author.find_by_id(author_id)
+    if author:
+        print("Author found:")
+        print(author)
+    else:
+        print("Author not found.")
+
+def find_course_by_id(course_id):
+    course = Course.find_by_id(course_id)
+    if course:
+        print("Course found:")
+        print(course)
+    else:
+        print("Course not found.")
+
+def find_book_by_id(book_id):
+    book = Book.find_by_id(book_id)
+    if book:
+        print("Book found:")
+        print(book)
+    else:
+        print("Book not found.")
 
 def exit_program():
     print("Exiting the program. Goodbye!")
