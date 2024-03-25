@@ -18,31 +18,34 @@ def validate_course(course_id, course_name):
     return course
 
 def add_book():
-    title = input("Enter the title of the book: ")
-    year = int(input("Enter the year of publication: "))
-    cost = float(input("Enter the cost of the book: "))
-    first_name = input("Enter the author's first name: ")
-    last_name = input("Enter the author's last name: ")
-    course_id = int(input("Enter the course ID of the book: "))
-    course_name = input("Enter the course name: ")
-    author_id = input("Enter the author ID of the book: ")
+    try:
+        title = input("Enter the title of the book: ")
+        year = int(input("Enter the year of publication: "))
+        cost = float(input("Enter the cost of the book: "))
+        first_name = input("Enter the author's first name: ")
+        last_name = input("Enter the author's last name: ")
+        course_id = int(input("Enter the course ID of the book: "))
+        course_name = input("Enter the course name: ")
+        author_id = input("Enter the author ID of the book: ")
         
-    existing_author = Author.find_by_id(author_id)
-    if existing_author:
-        author_id = existing_author[0]
-    else:
-        new_author = Author(first_name, last_name)
-        new_author.create()
-        author_id = new_author.find_by_id(author_id)[0]
+        existing_author = Author.find_by_id(author_id)
+        if existing_author:
+            author_id = existing_author[0]
+        else:
+            new_author = Author(first_name, last_name)
+            new_author.create()
+            author_id = new_author.find_by_id(author_id)[0]
 
-    existing_course = Course.find_by_id(course_id)
-    if not existing_course:
-        new_course = Course(course_name)
-        new_course.create()
+        existing_course = Course.find_by_id(course_id)
+        if not existing_course:
+            new_course = Course(course_name)
+            new_course.create()
 
-    new_book = Book(title, year, cost, author_id, course_id)
-    new_book.create()
-    print("Book added successfully.")
+        new_book = Book(title, year, cost, author_id, course_id)
+        new_book.create()
+        print("Book added successfully.")
+    except ValueError:
+        print("Invalid input. Please enter a valid input.")
 
 def delete_book(book_id):
     book = Book.find_by_id(book_id)
