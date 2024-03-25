@@ -12,10 +12,11 @@ class Author:
         conn.commit()
         conn.close()
 
-    def delete(self):
+    @classmethod
+    def delete(cls, author_id):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM authors WHERE id = ?", (self.id,))
+        cursor.execute("DELETE FROM authors WHERE id = ?", (author_id,))
         conn.commit()
         conn.close()
 
@@ -32,7 +33,7 @@ class Author:
     def find_by_id(author_id):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("SELECT id, first_name, last_name FROM authors WHERE id = ?", (author_id,))
+        cursor.execute("SELECT * FROM authors WHERE id = ?", (author_id,))
         author = cursor.fetchone()
         conn.close()
         return author

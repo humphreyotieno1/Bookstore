@@ -1,6 +1,6 @@
 # BOOKSTORE
 ## Author
-Humphrey Otieno - `humphryotieno04@gmail.com`
+Humphrey Otieno - `humphreyotieno04@gmail.com`
 
 Welcome to the Bookstore. This system provides a comprehensive solution for managing library resources efficiently. 
 

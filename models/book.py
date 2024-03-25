@@ -15,10 +15,11 @@ class Book:
         conn.commit()
         conn.close()
 
-    def delete(self):
+    @classmethod
+    def delete(cls, book_id):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM books WHERE id = ?", (self.title,))
+        cursor.execute("DELETE FROM books WHERE id = ?", (book_id,))
         conn.commit()
         conn.close()
 
@@ -35,11 +36,7 @@ class Book:
     def find_by_id(book_id):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("SELECT title, year, cost, author_id, course_id FROM books WHERE id = ?", (book_id,))
-        book_data = cursor.fetchone()
+        cursor.execute("SELECT * FROM books WHERE id = ?", (book_id,))
+        book = cursor.fetchone()
         conn.close()
-        
-        if book_data:
-            return Book(*book_data)
-        else:
-            return None
+        return book

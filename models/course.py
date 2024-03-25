@@ -11,10 +11,11 @@ class Course:
         conn.commit()
         conn.close()
 
-    def delete(self):
+    @classmethod
+    def delete(cls, course_id):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM courses WHERE id = ?", (self.id,))
+        cursor.execute("DELETE FROM courses WHERE id = ?", (course_id,))
         conn.commit()
         conn.close()
 
