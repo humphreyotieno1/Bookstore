@@ -2,7 +2,8 @@
 ## Author
 Humphrey Otieno - `humphreyotieno04@gmail.com`
 
-Welcome to the Bookstore. This system provides a comprehensive solution for managing library resources efficiently. 
+# ABOUT
+Welcome to the Bookstore. This Python application provides a Command Line Interface (CLI) for managing a library's collection of books, authors, and courses. It incorporates Object-Relational Mapping (ORM) techniques to interact with a SQLite database, allowing users to perform various operations such as adding, viewing, and deleting records.
 
 ## Table of Contents
 - Introduction
