@@ -1,7 +1,7 @@
-from helper import add_book, delete_book, delete_course, delete_author, display_all_books, exit_program, find_author_by_id, find_course_by_id, find_book_by_id
+from helper import add_book, delete_book, delete_course, delete_author, display_all_books, find_author_by_id, find_course_by_id, find_book_by_id
 
 def main():
-    print("Welcome to the Library Management System!")
+    print("Welcome to the Bookstore")
     while True:
         print("\n1. Add a book\n2. View all books\n3. Delete a book\n4. Find a book by ID\n5. Delete a course\n6. Find a course by ID\n7. Delete an author\n8. Find an author by ID\n9. Exit")
         choice = input("Enter your choice: ")
@@ -32,6 +32,10 @@ def main():
             break
         else:
             print("Invalid choice. Please enter a valid choice.")
+
+def exit_program():
+    print("Exiting the program. Goodbye!")
+    exit()
 
 if __name__ == "__main__":
     main()

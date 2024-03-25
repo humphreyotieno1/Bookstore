@@ -104,7 +104,3 @@ def find_book_by_id(book_id):
         print(book)
     else:
         print("Book not found.")
-
-def exit_program():
-    print("Exiting the program. Goodbye!")
-    exit()
