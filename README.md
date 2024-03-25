@@ -44,6 +44,25 @@ The Bookstore is a Python-based application designed to simplify the management 
     - View Courses: View a list of all courses stored in the system.
     - Delete Courses: Remove courses from the system. Deleting a course also deletes any books associated with it.
 
+## Relationships
+- Author-Book Relationship: One-to-Many (Author can have many books)
+
+- Course-Book Relationship: One-to-Many (Course can have many books)
+
+## Tables
+### books Table
+- title - text
+- author - text
+- year - integer
+- cost - integer
+
+### authors Table
+- first_name - text
+- last_name - text
+
+### course Table
+- name - text
+
 ## Installation
 1. Clone the repository
 
