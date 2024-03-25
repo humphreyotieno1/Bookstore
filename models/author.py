@@ -16,7 +16,6 @@ class Author:
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute("DELETE FROM authors WHERE id = ?", (self.id,))
-        cursor.execute("DELETE FROM authors WHERE id = ?", (self.id,))
         conn.commit()
         conn.close()
 

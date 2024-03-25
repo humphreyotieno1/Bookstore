@@ -35,7 +35,7 @@ def add_book():
     else:
         new_author = Author(first_name, last_name)
         new_author.create()
-        author_id = new_author.find_by_id(first_name, last_name)[0]
+        author_id = new_author.find_by_id(author_id)[0]
 
     existing_course = Course.find_by_id(course_id)
     if not existing_course:
@@ -51,13 +51,24 @@ def delete_book():
     book = Book.find_by_id(book_id)
     if book:
         author_id = book.author_id
+        course_id = book.course_id
         book.delete()
+        
         author = Author.find_by_id(author_id)
         if author:
             author.delete()
-            print("Book and associated author deleted successfully.")
+            print("Author deleted successfully.")
         else:
             print("Author not found.")
+        
+        course = Course.find_by_id(course_id)
+        if course:
+            course.delete()
+            print("Course deleted successfully.")
+        else:
+            print("Course not found.")
+        
+        print("Book and associated author and course deleted successfully.")
     else:
         print("Book not found. Please enter a valid book ID.")
 
