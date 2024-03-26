@@ -1,6 +1,10 @@
 from models.course import Course
 from models.author import Author
 from models.book import Book
+import os
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def validate_author(author_id):
     author = Author.find_by_id(author_id)
@@ -68,13 +72,12 @@ def delete_course(course_id):
     else:
         print("Course not found.")
 
-
 def display_all_books():
     books = Book.get_all()
     if books:
         print("All Books:")
         for book in books:
-            print(book)
+            print(f"Title: {book[1]}, Year: {book[2]}, Cost: {book[3]}, Author ID: {book[4]}, Course ID: {book[5]}")
     else:
         print("No books found.")
         
@@ -82,7 +85,7 @@ def find_author_by_id(author_id):
     author = Author.find_by_id(author_id)
     if author:
         print("Author found:")
-        print(author)
+        print(f"ID: {author[0]}, First Name: {author[1]}, Last Name: {author[2]}")
     else:
         print("Author not found.")
 
@@ -90,7 +93,7 @@ def find_course_by_id(course_id):
     course = Course.find_by_id(course_id)
     if course:
         print("Course found:")
-        print(course)
+        print(f"ID: {course[0]}, Name: {course[1]}")
     else:
         print("Course not found.")
 
@@ -98,7 +101,7 @@ def find_book_by_id(book_id):
     book = Book.find_by_id(book_id)
     if book:
         print("Book found:")
-        print(book)
+        print(f"ID: {book[0]}, Title: {book[1]}, Year: {book[2]}, Cost: {book[3]}, Author ID: {book[4]}, Course ID: {book[5]}")
     else:
         print("Book not found.")
 

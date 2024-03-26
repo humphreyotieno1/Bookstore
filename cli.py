@@ -1,10 +1,23 @@
-from helper import add_book, delete_book, delete_course, delete_author, display_all_books, find_author_by_id, find_course_by_id, find_book_by_id
+import os
+from helper import add_book, delete_book, delete_course, delete_author, display_all_books, find_author_by_id, find_course_by_id, find_book_by_id, clear_screen
 
 def main():
     print("Welcome to the Bookstore")
     while True:
-        print("\n1. Add a book\n2. View all books\n3. Delete a book\n4. Find a book by ID\n5. Delete a course\n6. Find a course by ID\n7. Delete an author\n8. Find an author by ID\n9. Exit")
-        choice = input("Enter your choice: ")
+        print("\n--- Main Menu ---")
+        print("1. Add a book")
+        print("2. View all books")
+        print("3. Delete a book")
+        print("4. Find a book by ID")
+        print("5. Delete a course")
+        print("6. Find a course by ID")
+        print("7. Delete an author")
+        print("8. Find an author by ID")
+        print("9. Clear screen")
+        print("10. Exit")
+        
+        choice = input("\nEnter your choice: ")
+        
         if choice == "1":
             add_book()
         elif choice == "2":
@@ -28,13 +41,15 @@ def main():
             author_id = input("Enter the ID of the author you want to find: ")
             find_author_by_id(author_id)
         elif choice == "9":
+            clear_screen()
+        elif choice == "10":
             exit_program()
             break
         else:
             print("Invalid choice. Please enter a valid choice.")
 
 def exit_program():
-    print("Exiting the program. Goodbye!")
+    print("\nExiting the program. Goodbye!")
     exit()
 
 if __name__ == "__main__":
