@@ -76,16 +76,19 @@ def display_all_books():
     books = Book.get_all()
     if books:
         print("All Books:")
+        print("{:<30} {:<8} {:<8} {:<14} {:<30}".format("Title", "Year", "Cost", "Author ID", "Course ID"))
         for book in books:
-            print(f"Title: {book[1]}, Year: {book[2]}, Cost: {book[3]}, Author ID: {book[4]}, Course ID: {book[5]}")
+            print("{:<30} {:<8} {:<8} {:<12} {:<30}".format(book[1], book[2], book[3], book[4], book[5]))
     else:
         print("No books found.")
+
         
 def find_author_by_id(author_id):
     author = Author.find_by_id(author_id)
     if author:
         print("Author found:")
-        print(f"ID: {author[0]}, First Name: {author[1]}, Last Name: {author[2]}")
+        print("{:<5} {:<15} {:<15}".format("ID", "First Name", "Last Name"))
+        print("{:<5} {:<15} {:<15}".format(author[0], author[1], author[2]))
     else:
         print("Author not found.")
 
@@ -93,7 +96,8 @@ def find_course_by_id(course_id):
     course = Course.find_by_id(course_id)
     if course:
         print("Course found:")
-        print(f"ID: {course[0]}, Name: {course[1]}")
+        print("{:<5} {:<20}".format("ID", "Name"))
+        print("{:<5} {:<20}".format(course[0], course[1]))
     else:
         print("Course not found.")
 
@@ -101,7 +105,8 @@ def find_book_by_id(book_id):
     book = Book.find_by_id(book_id)
     if book:
         print("Book found:")
-        print(f"ID: {book[0]}, Title: {book[1]}, Year: {book[2]}, Cost: {book[3]}, Author ID: {book[4]}, Course ID: {book[5]}")
+        print("{:<5} {:<20} {:<10} {:<10} {:<10} {:<10}".format("ID", "Title", "Year", "Cost", "Author ID", "Course ID"))
+        print("{:<5} {:<20} {:<10} {:<10} {:<10} {:<10}".format(book[0], book[1], book[2], book[3], book[4], book[5]))
     else:
         print("Book not found.")
 
